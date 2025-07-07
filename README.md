@@ -1,14 +1,14 @@
-# Sms Sender Client
+# SmsClient Sender Client
 
-A PHP component to use Sms sender' API within your PHP project.
+A PHP component to use SmsClient sender' API within your PHP project.
 
-**Sms sender** allows you to send SMS messages using the API.
+**SmsClient sender** allows you to send SMS messages using the API.
 
 ## Feature
 
 ### Available Methods
 
-**Sms sender client** provides one public method :
+**SmsClient sender client** provides one public method :
 * `sendSms(string $messageText, string $receiverPhoneNumber)`: Sends an SMS with the specified `messageText` to the given `receiverPhoneNumber`. Returns a boolean indicating success.
 
 
@@ -18,7 +18,7 @@ A PHP component to use Sms sender' API within your PHP project.
 composer require logipro/SmsSender-client
 ```
 
-## To contribute to Sms Sender Client 
+## To contribute to SmsClient Sender Client 
 ### Requirements:
 * Docker
 * Git
@@ -37,7 +37,7 @@ Run integration tests with:
 ```shell
 bin/phpunit-integration
 ```
-**integration tests can only be run if you have a running [Sms Sender](https://github.com/logipro-fr/Sms.git) instance**
+**integration tests can only be run if you have a running [SmsClient Sender](https://github.com/logipro-fr/SmsClient.git) instance**
 
 ### Quality
 #### Some indicators:
