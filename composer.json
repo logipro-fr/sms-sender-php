@@ -3,8 +3,15 @@
     "type": "app",
     "description": "start a new PHP project with a simple base structure",
     "keywords": ["php", "DDT"],
-    "homepage": "https://github.com/frederic100/SMS",
-    "license": "Copyrighted",
+    "homepage": "https://github.com/logipro-fr/sms-sender-php",
+    "authors": [
+    {
+        "name": "Jeremy Coqblin",
+        "email": "jeremy.coqblin@logipro.com",
+        "homepage": "https://fr.linkedin.com/in/j%C3%A9r%C3%A9mycoqblin"
+    }
+    ],
+    "license": "proprietary",
     "minimum-stability": "stable",
     "require": {
         "php": ">=8.3",
