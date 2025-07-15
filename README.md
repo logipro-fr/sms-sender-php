@@ -15,7 +15,7 @@ A PHP component to use SmsClient sender' API within your PHP project.
 ## Installation
 
 ```shell
-composer require logipro/SmsSender-client
+composer require logipro/smsclient-sender-php
 ```
 
 ## To contribute to SmsClient Sender Client 
@@ -37,7 +37,7 @@ Run integration tests with:
 ```shell
 bin/phpunit-integration
 ```
-**integration tests can only be run if you have a running [SmsClient Sender](https://github.com/logipro-fr/SmsClient.git) instance**
+**integration tests can only be run if you have a running [SmsClient Sender](https://github.com/logipro-fr/sms-sender-php.git) instance**
 
 ### Quality
 #### Some indicators:
