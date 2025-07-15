@@ -65,7 +65,8 @@ class SmsSenderTest extends TestCase
         $result = $smsSender->sendSms('+1234567890', 'Hello world');
 
         $this->assertInstanceOf(SmsResponseDTO::class, $result);
-        $this->assertEquals('abc123', $result->smsId);
+        $this->assertEquals('abc123', $result->getMessageId());
+        $this->assertEquals('success', $result->getStatus());
     }
 
     public function testSendSmsInvalidJsonThrowsException(): void

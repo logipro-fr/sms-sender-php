@@ -15,12 +15,15 @@ final class SendSmeWithClientPhpContext implements Context
     private SmsClientPHP $smsClient;
     private string $phoneNumber = '';
     private string $message = '';
+    /** @var array<string, string|null>|null */
     private ?array $responseData = null;
 
     public function __construct()
     {
         $smsSenderMock = new class extends SmsSender {
-            public function __construct() {}
+            public function __construct()
+            {
+            }
             public function sendSms(string $phoneNumber, string $messageText): SmsResponseDTO
             {
                 return new SmsResponseDTO('mocked_sms_id_123');
