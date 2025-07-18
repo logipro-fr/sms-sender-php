@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use SmsClientPhp\ClientApi\SmsSender;
 use SmsClientPhp\ClientApi\ApiUrls;
 use SmsClientPhp\ClientApi\DTO\SmsResponseDTO;
+use SmsClientPhp\ClientApi\Exceptions\SmsApiBadReceiversException;
+use SmsClientPhp\ClientApi\Exceptions\SmsApiInvalidApiKeyException;
+use SmsClientPhp\ClientApi\Exceptions\SmsApiNoCreditException;
 use SmsClientPhp\ClientApi\Exceptions\SmsException;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
@@ -108,6 +111,66 @@ class SmsSenderTest extends TestCase
         $this->expectException(SmsException::class);
         $this->expectExceptionMessage('Something went wrong');
 
+        $smsSender->sendSms('+1234567890', 'Hello world');
+    }
+
+    public function testSendSmsBadReceiversThrowsSpecificException(): void
+    {
+        $jsonResponse = json_encode([
+            'success' => false,
+            'error' => 'badReceivers',
+        ]);
+
+        $this->responseMock
+            ->method('getContent')
+            ->willReturn($jsonResponse);
+
+        $this->clientMock
+            ->method('request')
+            ->willReturn($this->responseMock);
+
+        $smsSender = new SmsSender($this->clientMock, $this->apiUrlsMock);
+        $this->expectException(SmsApiBadReceiversException::class);
+        $smsSender->sendSms('+1234567890', 'Hello world');
+    }
+
+    public function testSendSmsNoCreditThrowsSpecificException(): void
+    {
+        $jsonResponse = json_encode([
+            'success' => false,
+            'error' => 'noCredit',
+        ]);
+
+        $this->responseMock
+            ->method('getContent')
+            ->willReturn($jsonResponse);
+
+        $this->clientMock
+            ->method('request')
+            ->willReturn($this->responseMock);
+
+        $smsSender = new SmsSender($this->clientMock, $this->apiUrlsMock);
+        $this->expectException(SmsApiNoCreditException::class);
+        $smsSender->sendSms('+1234567890', 'Hello world');
+    }
+
+    public function testSendSmsInvalidApiKeyThrowsSpecificException(): void
+    {
+        $jsonResponse = json_encode([
+            'success' => false,
+            'error' => 'invalidApiKey',
+        ]);
+
+        $this->responseMock
+            ->method('getContent')
+            ->willReturn($jsonResponse);
+
+        $this->clientMock
+            ->method('request')
+            ->willReturn($this->responseMock);
+
+        $smsSender = new SmsSender($this->clientMock, $this->apiUrlsMock);
+        $this->expectException(SmsApiInvalidApiKeyException::class);
         $smsSender->sendSms('+1234567890', 'Hello world');
     }
 }
